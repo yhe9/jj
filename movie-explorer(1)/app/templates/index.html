@@ -1,0 +1,66 @@
+{% extends 'base.html'%}
+{% import 'macros.html' as macro%}
+<!-- Styles block -->
+{% block styles%}
+    {{ super() }}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/styles.css')}}">
+{% endblock %}
+{% block content %}
+<style>
+    body{
+        font-family: 'Roboto', sans-serif;
+    }
+    h3.text-center{
+        text-transform: uppercase;
+    }
+</style>
+<div class="container">
+    <form style="display: flex;">
+        <input type="text" name="movie_query" placeholder="Search for a Movie" class="form-control">
+        <input type="submit"  value="Submit" class="btn btn-default">
+    </form>
+</div>
+
+<!-- Now showing movie -->
+{% if now_showing %}
+<div class="container">
+    <hr>
+    <h3 class="text-center">Now Showing</h3>
+    <div>
+        {{ macro.displayMovieList(now_showing)}}
+    </div>
+</div>
+{% endif %}
+
+<!-- Popular movie -->
+{% if popular %}
+<div class="container">
+
+    <h3 class="text-center"> Popular Movies</h3>
+    <div>
+        {{ macro.displayMovieList(popular)}}
+    </div>
+</div>
+{% endif %}
+
+<!-- Upcoming movie  -->
+{% if upcoming %}
+<div class="container">
+    <hr>
+    <h3 class="text-center"> Upcoming Movies </h3>
+    <div>
+        {{ macro.displayMovieList(upcoming)}}
+    </div>
+</div>
+{% endif %}
+
+
+<div class="footer" style=" width: 100%; height: 50px; float: left; background-color: #222;">
+    <p style="box-sizing: border-box; color: #FFF; text-align: center;height: 20px;padding: 13px;">
+        Copyright © Reserved Movie Explorer
+    </p>
+ </div>
+{% endblock%}
+
+
+
